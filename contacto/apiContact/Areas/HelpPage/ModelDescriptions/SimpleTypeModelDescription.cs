@@ -1,0 +1,6 @@
+namespace apiContact.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
