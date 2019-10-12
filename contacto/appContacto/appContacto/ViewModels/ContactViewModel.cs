@@ -3,11 +3,12 @@ using appContacto.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace appContacto.ViewModels
 {
-    public class ContactViewModel:BaseViewModel 
+    public class ContactViewModel : BaseViewModel
     {
         #region Attributes
         ApiService apiservice;
@@ -61,7 +62,23 @@ namespace appContacto.ViewModels
 
             MainViewModel mainViewModel = MainViewModel.GetInstance();
             mainViewModel.ContactList = (List<Contact>)response.Result;
-            //this.Contacts = new ObservableCollection<Contact>();
+            this.Contacts = new ObservableCollection<Contact>(this.ToContactView());
+        }
+        private IEnumerable<Contact> ToContactView()
+        {
+            ObservableCollection<Contact> collection = new ObservableCollection<Contact>();
+            MainViewModel main = MainViewModel.GetInstance();
+            foreach (var lista in main.ContactList)
+            {
+                Contact contacto = new Contact();
+                contacto.ContactID = lista.ContactID;
+                contacto.Name = lista.Name;
+                contacto.Type = lista.Type;
+                contacto.ContactValue=lista.ContactValue;
+                collection.Add(contacto);
+            }
+            return collection;
+                
         }
         #endregion
 
