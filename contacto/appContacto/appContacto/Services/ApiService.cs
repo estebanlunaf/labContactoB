@@ -25,7 +25,7 @@
             }
 
 
-            bool isReachable = VerifyConnectionURL("https://productosi220.azurewebsites.net/");
+            bool isReachable = VerifyConnectionURL("http://localhost:49999/");
             if (!isReachable)
             {
                 return new Response
