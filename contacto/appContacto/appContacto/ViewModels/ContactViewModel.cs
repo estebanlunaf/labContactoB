@@ -47,7 +47,7 @@ namespace appContacto.ViewModels
             }
 
             var response = await this.apiService.GetList<Contact>(
-                "http://localhost:49999/",
+                "https://apicontactsi220.azurewebsites.net/",
                 "api/",
                 "Contacts");
             if (!response.IsSuccess)
